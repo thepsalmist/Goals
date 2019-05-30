@@ -1,0 +1,40 @@
+<!-- create a form with three input tags (name,desccription and date) -->
+
+<div class="container-fluid">
+  <div class="row">
+    <!-- introduce ngSubmit event attribute that calls submit function -->
+    <form (ngSubmit)='submitGoal ()' #goalForm='ngForm'>
+      <!-- Name form -->
+      <div class="form-group">
+        <label for="name">Name</label>
+        <!-- We then add a [(ngModel)] attribute to our name input and equate it to the name attribute of the newGoal object we created in our Component class -->
+        <input type="text" required class="form-control" id="name" [(ngModel)]="newGoal.name" name="name" #name="ngModel" required>
+        <div [hidden]="name.valid || name.prestine" class="alert alert-danger">
+          <p>Name is Required</p>
+        </div>
+        <!-- testing to see if we get new data -->
+        Display {{newGoal.name}}
+      </div>
+      <!-- Description form -->
+      <div class="form-group">
+        <label for="description">Description</label>
+        <textarea class="form-control" id="description" [(ngModel)]="newGoal.description" name="description" #description="ngModel" rows="4" cols="80" required></textarea>
+      </div>
+      <div [hidden]="description.valid || description.prestine" class="alert alert-danger">
+        <p>Description is Required</p>
+      </div>
+      <!-- Completion form -->
+      <div class="form-group">
+        <label for="complete">Completion</label>
+        <input type="date" id="complete" [(ngModel)]="newGoal.completeDate" name="completeDate" #completeDate="ngModel" required>
+        <div [hidden]="completeDate.valid || completeDate.prestine" class="alert alert-danger">
+          <p>Complete Date is Required</p>
+        </div>
+
+      </div>
+      <button type="submit" class="btn btn-success btn-lg">Add Goal</button>
+    </form>
+
+  </div>
+
+</div>
